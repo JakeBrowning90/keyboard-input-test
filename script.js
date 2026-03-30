@@ -65,6 +65,19 @@ function executeMovement(input) {
   // console.log(newLocation);
   location.removeChild(playerChar);
   newLocation.appendChild(playerChar);
+  checkFruitGet(newLocation);
+}
+
+function checkFruitGet(newLocation) {
+  if (newLocation.querySelector(".fruit")) {
+    // Remove current fruit
+    newLocation.removeChild(newLocation.querySelector(".fruit"));
+    // Add to score
+    playerScore++;
+    scoreboard.textContent = playerScore;
+    // Spawn new fruit
+    spawnFruit();
+  }
 }
 
 function spawnFruit() {
@@ -73,8 +86,8 @@ function spawnFruit() {
   // Get random cell
   let randX = Math.floor(Math.random() * fieldSize);
   let randY = Math.floor(Math.random() * fieldSize);
-  console.log(`${randX}, ${randY}`);
-  // TODO: disallow spawn on current location
+  // console.log(`${randX}, ${randY}`);
+  // TODO: disallow spawn in same space or space occupied by playerChar
   let randSpawn = document.getElementById(`${randX}, ${randY}`);
   randSpawn.appendChild(fruit);
 }
@@ -103,7 +116,8 @@ function drawPlayfield(fieldSize) {
       y.value = j;
       playCell.setAttributeNode(y);
       playCell.setAttribute("id", `${i}, ${j}`);
-      playCell.textContent = playCell.id;
+      // FOR TESTING: show ID in cell
+      // playCell.textContent = playCell.id;
       fieldRow.appendChild(playCell);
     }
 
@@ -124,6 +138,10 @@ function getCenterField(fieldSize) {
 // EDIT FIELD SIZE
 let fieldSize = 9;
 drawPlayfield(fieldSize);
+
+let playerScore = 0;
+let scoreboard = document.getElementById("scoreboard");
+scoreboard.textContent = playerScore;
 
 let center = getCenterField(fieldSize);
 let startingCell = document.getElementById(`${center}, ${center}`);

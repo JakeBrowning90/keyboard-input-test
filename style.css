@@ -27,14 +27,25 @@
 }
 
 .playCell {
+  display: grid;
   border: 1px solid rgb(189, 189, 189);
 }
 
-#playerChar {
+#playerChar,
+.fruit {
   border-radius: 50%;
-  border: 1px solid black;
+  border: 2px solid black;
+  aspect-ratio: 1/1;
+  grid-row: 1;
+  grid-column: 1;
+}
 
+#playerChar {
   background-color: rgb(255, 234, 9);
   height: 66%;
-  aspect-ratio: 1/1;
+}
+
+.fruit {
+  background-color: rgb(230, 47, 72);
+  height: 33%;
 }

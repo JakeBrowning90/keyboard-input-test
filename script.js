@@ -67,6 +67,18 @@ function executeMovement(input) {
   newLocation.appendChild(playerChar);
 }
 
+function spawnFruit() {
+  let fruit = document.createElement("div");
+  fruit.classList.add("fruit");
+  // Get random cell
+  let randX = Math.floor(Math.random() * fieldSize);
+  let randY = Math.floor(Math.random() * fieldSize);
+  console.log(`${randX}, ${randY}`);
+  // TODO: disallow spawn on current location
+  let randSpawn = document.getElementById(`${randX}, ${randY}`);
+  randSpawn.appendChild(fruit);
+}
+
 document.addEventListener("keydown", hightlightKey);
 document.addEventListener("keyup", unhightlightKey);
 document.addEventListener("keydown", getMovement);
@@ -127,3 +139,4 @@ playerChar.setAttribute("id", "playerChar");
 // playerChar.setAttributeNode(y);
 
 startingCell.appendChild(playerChar);
+spawnFruit();

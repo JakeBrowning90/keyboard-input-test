@@ -105,7 +105,7 @@ function getCenterField(fieldSize) {
 }
 
 // EDIT FIELD SIZE
-let fieldSize = 10;
+let fieldSize = 9;
 drawPlayfield(fieldSize);
 
 let center = getCenterField(fieldSize);

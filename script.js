@@ -27,23 +27,39 @@ function executeMovement(input) {
   // get current location
   let location = document.getElementById("playerChar").parentElement;
   console.log(location);
-  let destination = parseInt(location.getAttribute("yloc")) + 1;
-  if (input == "up" && parseInt(location.getAttribute("yloc")) + 1 < fieldSize)
-    if (input == "up" && destination < fieldSize) {
-      // determine if movement is valid from current location
-      // valid move
-      let newLocation = document.getElementById(
-        location.getAttribute("xloc") + ", " + destination,
-      );
-      console.log(newLocation);
-      location.removeChild(playerChar);
-      newLocation.appendChild(playerChar);
-    }
-  //   else if (input == "down" && destination < fieldSize){}
-  //   else if (){}
-  //   else if () else{
-  //     console.log("Invalid move")
-  //   }
+  // get destination based on direction
+  let destination;
+  if (input == "up") {
+    destination = parseInt(location.getAttribute("yloc")) + 1;
+  } else if (input == "down") {
+    destination = parseInt(location.getAttribute("yloc")) - 1;
+  } else if (input == "left") {
+    destination = parseInt(location.getAttribute("xloc")) - 1;
+  } else if (input == "right") {
+    destination = parseInt(location.getAttribute("xloc")) + 1;
+  }
+  console.log(destination);
+  // determine if destination is valid
+  if (destination < 0 || destination >= fieldSize) {
+    console.log("invalid move");
+    return;
+  }
+
+  // complete movement if valid
+  let newLocation;
+  if (input == "up" || input == "down") {
+    newLocation = document.getElementById(
+      location.getAttribute("xloc") + ", " + destination,
+    );
+  } else if (input == "left" || input == "right") {
+    newLocation = document.getElementById(
+      destination + ", " + location.getAttribute("yloc"),
+    );
+  }
+
+  console.log(newLocation);
+  location.removeChild(playerChar);
+  newLocation.appendChild(playerChar);
 }
 
 document.addEventListener("keydown", hightlightKey);

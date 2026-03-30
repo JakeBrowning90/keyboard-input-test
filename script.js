@@ -69,9 +69,12 @@ document.addEventListener("keydown", getMovement);
 function drawPlayfield(fieldSize) {
   let playField = document.getElementById("playField");
 
+  playField.style.gridTemplateColumns = ` repeat(${fieldSize}, 1fr)`;
+
   for (let i = 0; i < fieldSize; i++) {
     let fieldRow = document.createElement("div");
-    fieldRow.classList.add("fieldRow");
+    fieldRow.classList.add("fieldCol");
+    fieldRow.style.gridTemplateRows = ` repeat(${fieldSize}, 1fr)`;
 
     for (let j = fieldSize - 1; j > -1; j--) {
       let playCell = document.createElement("div");
@@ -101,7 +104,8 @@ function getCenterField(fieldSize) {
   return center;
 }
 
-let fieldSize = 5;
+// EDIT FIELD SIZE
+let fieldSize = 10;
 drawPlayfield(fieldSize);
 
 let center = getCenterField(fieldSize);

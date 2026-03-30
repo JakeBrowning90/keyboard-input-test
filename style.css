@@ -19,11 +19,11 @@
   border: 1px solid black;
   display: grid;
   /* grid-template-columns: repeat(5, 1fr); */
-  grid-template-columns: repeat(5, 1fr);
+  /* grid-template-columns: repeat(5, 1fr); */
 }
-.fieldRow {
+.fieldCol {
   display: grid;
-  grid-template-rows: repeat(5, 1fr);
+  /* grid-template-rows: repeat(5, 1fr); */
 }
 
 .playCell {

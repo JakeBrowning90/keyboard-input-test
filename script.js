@@ -1,13 +1,18 @@
 function hightlightKey(e) {
   //   console.log(`${e.code}`);
   let targetedKey = document.getElementById(e.code);
-  targetedKey.classList.add("activeKey");
+  // Don't throw errors for unbound keys
+  if (targetedKey) {
+    targetedKey.classList.add("activeKey");
+  }
 }
 
 function unhightlightKey(e) {
   //   console.log(`${e.code}`);
   let targetedKey = document.getElementById(e.code);
-  targetedKey.classList.remove("activeKey");
+  if (targetedKey) {
+    targetedKey.classList.remove("activeKey");
+  }
 }
 
 function getMovement(e) {
@@ -26,7 +31,7 @@ function executeMovement(input) {
   console.log(input);
   // get current location
   let location = document.getElementById("playerChar").parentElement;
-  console.log(location);
+  // console.log(location);
   // get destination based on direction
   let destination;
   if (input == "up") {
@@ -38,7 +43,7 @@ function executeMovement(input) {
   } else if (input == "right") {
     destination = parseInt(location.getAttribute("xloc")) + 1;
   }
-  console.log(destination);
+  // console.log(destination);
   // determine if destination is valid
   if (destination < 0 || destination >= fieldSize) {
     console.log("invalid move");
@@ -57,7 +62,7 @@ function executeMovement(input) {
     );
   }
 
-  console.log(newLocation);
+  // console.log(newLocation);
   location.removeChild(playerChar);
   newLocation.appendChild(playerChar);
 }
